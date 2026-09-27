@@ -4,7 +4,7 @@
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        
+
         <style>
             @font-face {
                 font-family: "Domine";
@@ -12,28 +12,103 @@
             }
             body {
                 background: rgba(23, 1, 33, 1);
+                margin: 0;
             }
 
             * {
                 font-family: "Domine";
                 color: azure;
+                box-sizing: border-box;
             }
 
             .container {
-                margin: 1rem 2rem;
-                min-height: 400px;
-                min-width: 200px;
+                margin: 1.5rem 2rem;
+                min-height: 200px;
+                min-width: 220px;
+                display: flex;
+                flex-direction: column;
                 align-items: center;
                 text-align: center;
+                gap: 1rem;
+            }
+
+            h1 {
+                font-size: 1.4rem;
+                margin: 0;
+            }
+
+            .toggle-row {
+                display: flex;
+                align-items: center;
+                gap: 0.75rem;
+                font-size: 1rem;
+            }
+
+            .switch {
+                position: relative;
+                display: inline-block;
+                width: 48px;
+                height: 26px;
+            }
+
+            .switch input {
+                opacity: 0;
+                width: 0;
+                height: 0;
+            }
+
+            .slider {
+                position: absolute;
+                cursor: pointer;
+                inset: 0;
+                background-color: #555;
+                transition: 0.2s;
+                border-radius: 26px;
+            }
+
+            .slider::before {
+                position: absolute;
+                content: "";
+                height: 20px;
+                width: 20px;
+                left: 3px;
+                bottom: 3px;
+                background-color: azure;
+                transition: 0.2s;
+                border-radius: 50%;
+            }
+
+            input:checked + .slider {
+                background-color: #7f3fbf;
+            }
+
+            input:checked + .slider::before {
+                transform: translateX(22px);
+            }
+
+            #status {
+                font-size: 0.85rem;
+                opacity: 0.8;
             }
         </style>
     </head>
 
     <body>
         <div class="container">
+            <h1>DarkTube</h1>
 
-            <h1>Hello World</h1>
+            <div class="toggle-row">
+                <label class="switch">
+                    <input type="checkbox" id="toggleSwitch">
+                    <span class="slider"></span>
+                </label>
+                <span id="toggleLabel">Enabled</span>
+            </div>
+
+            <span id="status">Inverts colors on the current YouTube video.</span>
         </div>
+
+        <script src="popup.js"></script>
     </body>
 
 </html>
